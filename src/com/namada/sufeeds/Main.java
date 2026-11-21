@@ -23,7 +23,7 @@ public class Main {
 
      try{
          // Load the driver class
-         Class.forName(DRIVER);
+         ClassEntry.forName(DRIVER);
           Connection conn = DBConnection.getConnection();
 
          // Establish connection
