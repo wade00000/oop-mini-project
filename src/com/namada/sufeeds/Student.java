@@ -7,19 +7,23 @@ public class Student {
     private Integer id;
     private String admissionNumber;
     private String name;
+    private String hashedPassword;
     private LocalDateTime createdAt;
 
 
-    public Student(String admissionNumber,String name){
+    public Student(String admissionNumber,String name,String password){
         this.admissionNumber = admissionNumber;
         this.name = name;
+        this.hashedPassword = PasswordHasher.hashPassword(password) ;
     }
 
-    public Student(Integer id ,String admissionNumber,String name,LocalDateTime createdAt){
+    public Student(Integer id ,String admissionNumber,String name,String hashedPassword,LocalDateTime createdAt){
         this.id = id;
         this.admissionNumber = admissionNumber;
         this.name = name;
+        this.hashedPassword = hashedPassword;
         this.createdAt = createdAt;
+
     }
 
     @Override
@@ -44,4 +48,10 @@ public class Student {
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
+    public String getHashedPassword() {return hashedPassword;}
+    public void setPassword(String password) {this.hashedPassword = PasswordHasher.hashPassword(password);}
+
+    public boolean verifyPassword (String password,String hashedPassword){
+        return PasswordHasher.verifyPassword(password,hashedPassword) ;
+    }
 }
