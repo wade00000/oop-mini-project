@@ -1,10 +1,9 @@
+// Wade Antoine Namada BBIT-B 226828 22-11-2026
 package com.namada.sufeeds;
 
 import org.mindrot.jbcrypt.BCrypt;
 
 public class PasswordHasher {
-    String hashedPassword;
-
 
     public static String hashPassword(String password) {
         // Define a cost factor (work factor). Default is 10.
@@ -17,8 +16,7 @@ public class PasswordHasher {
         return BCrypt.hashpw(password, salt);
     }
 
-    public static boolean verifyPassword(String password,String hashedPassword){
-
-        return BCrypt.checkpw(password,hashPassword(password)) ;
+    public static boolean verifyPassword(String typed,String hashedPassword){
+        return BCrypt.checkpw(typed,hashedPassword) ;
     }
 }
