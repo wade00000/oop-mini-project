@@ -2,55 +2,72 @@
 package com.namada.sufeeds;
 
 import javax.swing.*;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
-public class RegisterFrame extends JFrame implements ActionListener{
+public class RegisterFrame extends BaseFrame implements ActionListener{
     //Declare components
-    JLabel lblName, lblid;
-    JTextField txtName, txtid;
+    JLabel lblName, lblAdm,lblPassword;
+    JTextField txtName, txtAdm;
+    JPasswordField txtPassword;
     JButton btnRegister;
 
     public RegisterFrame(){
-        super ("Welcome");
-        setLayout(new FlowLayout());
+        super ("Register");
+        contentPanel.setLayout(new GridLayout(3, 2, 10, 10));
+
 
         // Initialise child component
         lblName = new JLabel("Name:");
         txtName = new JTextField(18);
-        lblid = new JLabel("ID no:");
-        txtid = new JTextField(10);
-        btnRegister = new JButton("Register:");
+        lblAdm = new JLabel("Adm no.:");
+        txtAdm = new JTextField(10);
+        lblPassword = new JLabel("Password:");
+        txtPassword = new JPasswordField(16);
+        btnRegister = new JButton("Register");
 
         // Link Button to Handler
         btnRegister.addActionListener(this);
 
         // Add components to com.namada.sufeeds.RegisterFrame
-        add(lblName);
-        add(txtName);
-        add(lblid);
-        add(txtid);
-        add(btnRegister);
+        contentPanel.add(lblName);
+        contentPanel.add(txtName);
+        contentPanel.add(lblAdm);
+        contentPanel.add(txtAdm);
+        contentPanel.add(lblPassword);
+        contentPanel.add(txtPassword);
+        contentPanel.add(btnRegister);
 
 
     }
 
-    public static void main(String[] args) {
-        // Create object to visualize GUI
-        RegisterFrame rFrame = new RegisterFrame();
-        rFrame.setSize(200, 300);
-        rFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        rFrame.setVisible(true);
-    }
     @Override
     public void actionPerformed(ActionEvent e){
-        // This the event handler
-        /*if user clicks on Button register - print his name*/
-        if (e.getSource()== btnRegister);
-        String msg = "Hello "+txtName.getText();
-        JOptionPane.showMessageDialog(null,msg);
-        System.out.println(msg);
+        if (e.getSource() == btnRegister){
+
+
+            String admission = txtAdm.getText().trim();
+            String name = txtName.getText().trim();
+            String password = new String(txtPassword.getPassword());
+
+            if(admission.isEmpty() || name.isEmpty() || password.isEmpty()){
+                JOptionPane.showMessageDialog(this,"Please Fill In The Blanks","Empty Fields",JOptionPane.WARNING_MESSAGE);
+
+            }
+
+            Student s = new Student(admission,name,password);
+            try {
+                StudentDAO.insert(s);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+
+
+            this.dispose();
+
+        }
     }
 
 }
