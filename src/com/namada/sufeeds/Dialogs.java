@@ -6,7 +6,6 @@ import java.awt.*;
 import java.sql.SQLException;
 
 // Small helpers so every screen shows pop-ups the same way.
-// Static only: there is nothing to store, so nobody needs a Dialogs object.
 public class Dialogs {
 
     private Dialogs() {

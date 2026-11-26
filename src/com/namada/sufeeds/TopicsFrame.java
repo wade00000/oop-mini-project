@@ -6,11 +6,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.List;   // explicit import: java.awt also has a List class
+import java.util.List;
 
 public class TopicsFrame extends BaseFrame implements ActionListener {
 
-    private static final int MAX_TITLE = 150;   // matches tbl_topics.title
+    private static final int MAX_TITLE = 150;
 
     private final ClassEntry cls;
     private final Student current;
@@ -167,7 +167,7 @@ public class TopicsFrame extends BaseFrame implements ActionListener {
         dispose();
     }
 
-    // The GUI check gives a clear message; the WHERE student_id = ? in the DAO is the real enforcement.
+
     private boolean ownedByMe(Topic topic, String action) {
         if (topic == null) {
             Dialogs.warn(this, "Select a topic first.", "No Topic Selected");

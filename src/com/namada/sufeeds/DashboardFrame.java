@@ -11,7 +11,6 @@ public class DashboardFrame extends BaseFrame implements ActionListener {
     private JLabel lblWelcome;
     private JButton btnMyClasses, btnLogout;
 
-    // Always create this screen through login, AFTER Session.setCurrentStudent(...)
     public DashboardFrame() {
         super("SU Feeds - Dashboard");
 

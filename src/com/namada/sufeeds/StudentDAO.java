@@ -98,6 +98,4 @@ public class StudentDAO {
 
 
 
-
-    // Also: PasswordHasher.verifyPassword(typed, storedHash) using BCrypt.checkpw
 }

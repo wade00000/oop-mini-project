@@ -7,7 +7,7 @@ public class Session {
 
     private static Student currentStudent;
 
-    // Nobody should create a Session object; it only holds static helpers.
+    // Nobody should create a Session object;
     private Session() {
     }
 
@@ -19,7 +19,7 @@ public class Session {
         currentStudent = student;
     }
 
-    // Handy check for screens: if this is false, send the user back to login.
+    // if this is false, send the user back to login.
     public static boolean isLoggedIn() {
         return currentStudent != null;
     }
